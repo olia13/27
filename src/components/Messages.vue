@@ -19,7 +19,8 @@ export default {
 .mas {
   border: 1px solid red;
   width: 50%;
-  height: 800px;
+  height: 400px;
+  box-sizing: border-box;
   
 }
 

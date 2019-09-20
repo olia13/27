@@ -1,9 +1,9 @@
 <template>
   <div class="cont">
-    <!-- Search: <textarea type="text" v-bind:value="propValue"> </textarea>   -->
+  <h1>{{msg}}</h1>  
    
-    <!-- <button @click="getFullName">jjj</button> -->
-    <div>{{getFullName}}</div>
+    
+    <div>{{getFullName}}</div> 
     
    
   </div>
@@ -12,26 +12,32 @@
 <script>
 export default {
   name: 'Contacts',
-  props:['propValue'],
+  props:{
+    ['propValue']: Array,
+    msg: String,
+  },
+
+
+  
   data() {
     return {
       newArray:'',
-      array: [{name:'Ann', messages:['hello', 'Goodbay']}, {name:'Bob', messages:['hello', 'Goodbay']}, {name:'Cat', messages:['hello', 'Goodbay']},]
+      array: [{name:'Ann', messages:['hello', 'Goodbay']}, 
+              {name:'Bob', messages:['hello', 'Goodbay']}, 
+              {name:'Cat', messages:['hello', 'Goodbay']},]
     }
   },
   computed: {
     getFullName() {
      
-     //var matches_array = str.match(regexp);
-
-     var value = this.propValue;
+      var value = this.propValue;
      
       this.newArray = this.array.filter(function (item){
-            console.log(item.name);
-            return item.name.indexOf(value) >= 0;
-        });
+        
+        return item.name.indexOf(value) >= 0;
+      });
       
-      return this.newArray
+      this.$emit('transferBack', this.newArray);
        
     }
   }
@@ -44,7 +50,8 @@ export default {
 .cont {
   border: 1px solid red;
   width: 50%;
-  height: 800px;
+  height: 400px;
   float: right;
+  box-sizing: border-box;
 }
 </style>

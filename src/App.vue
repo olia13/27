@@ -1,14 +1,9 @@
 <template>
   <div id="app">
-
-
-     Parent: <input type="text" v-model="goodValue">{{goodValue}}
-    <hr />
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Header @transfer="getValue" :propValue="goodValue"/>
-    <Contacts :propValue="goodValue"/>
-    <Messages msg="Welcome to Your Messages.js App"/>
-    <Footer msg="Welcome to Your Footer.js App"/>
+    <Header @transfer="getValue" :propValueBack="moreOneValue" msg="Header"/>
+    <Contacts @transferBack="getMoreOneValue" :propValue="goodValue" msg="Contacts"/>
+    <Messages msg="Messages"/>
+    <Footer msg="Footer"/>
   </div>
 </template>
 
@@ -22,13 +17,17 @@ export default {
   name: 'app',
    data(){
      return {
-       goodValue: ''
+       goodValue: '',
+       moreOneValue: ''
      }
    },
   methods: {
     getValue(value) {
-      console.log('Working ..getValue', value)
+      
       this.goodValue = value;
+    },
+    getMoreOneValue(value) {
+      this.moreOneValue = value;
     }
   },
   components: {
